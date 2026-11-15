@@ -1,6 +1,7 @@
 package Entities;
 
 import java.time.LocalDateTime;
+import Enumerations.EstadoEnvio;
 
 public class Envio {
     private int idEnvio;
@@ -13,6 +14,7 @@ public class Envio {
     private String numeroGuia;
     private LocalDateTime fechaRegistro;
     private LocalDateTime fechaRetiro;
+    private EstadoEnvio estado;
     
     public Envio(int idEnvio, Cotizacion cotizacion, Paquete paquete, String destino, Cliente remitente,
             Cliente destinatario, Salida salida, String numeroGuia, LocalDateTime fechaRegistro) {
@@ -25,6 +27,11 @@ public class Envio {
         this.salida = salida;
         this.numeroGuia = numeroGuia;
         this.fechaRegistro = fechaRegistro;
+        this.fechaRetiro = null;
+        this.estado = EstadoEnvio.REGISTRADO;
+        if (paquete != null) {
+            paquete.setEstado(EstadoEnvio.REGISTRADO);
+        }
     }
     public int getIdEnvio() {
         return idEnvio;
@@ -86,6 +93,23 @@ public class Envio {
     public void setFechaRetiro(LocalDateTime fechaRetiro) {
         this.fechaRetiro = fechaRetiro;
     }
-    
-    
+    public EstadoEnvio getEstado() {
+        if (estado == null && paquete != null) {
+            return paquete.getEstado();
+        }
+        return estado != null ? estado : EstadoEnvio.REGISTRADO;
+    }
+    public void setEstado(EstadoEnvio estado) {
+        this.estado = estado;
+        if (this.paquete != null) {
+            this.paquete.setEstado(estado);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Guía: " + numeroGuia + " | Destino: " + destino + " | Estado: " + getEstado() +
+               (remitente != null ? " | De: " + remitente.getNombre() : "") +
+               (destinatario != null ? " | Para: " + destinatario.getNombre() : "");
+    }
 }

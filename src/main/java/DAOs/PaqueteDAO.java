@@ -2,11 +2,10 @@ package DAOs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Paquete;
 
 public class PaqueteDAO {
-    private final List<Paquete> registros = new ArrayList<>();
+    private static final List<Paquete> registros = new ArrayList<>();
 
     // CREATE
     public boolean guardar(Paquete paquete) {

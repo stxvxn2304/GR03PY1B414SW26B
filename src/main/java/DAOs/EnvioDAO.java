@@ -3,11 +3,10 @@ package DAOs;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Envio;
 
 public class EnvioDAO {
-    private final List<Envio> registros = new ArrayList<>();
+    private static final List<Envio> registros = new ArrayList<>();
 
     // CREATE
     public boolean guardar(Envio envio) {
@@ -29,8 +28,9 @@ public class EnvioDAO {
     }
 
     public Envio buscarPorNumeroGuia(String numeroGuia) {
+        if (numeroGuia == null) return null;
         for (Envio envio : registros) {
-            if (envio.getNumeroGuia() == numeroGuia) {
+            if (envio.getNumeroGuia() != null && envio.getNumeroGuia().trim().equalsIgnoreCase(numeroGuia.trim())) {
                 return envio;
             }
         }
@@ -41,10 +41,12 @@ public class EnvioDAO {
     public List<Envio> listarTodos() {
         return new ArrayList<>(registros);
     }
+
     public List<Envio> listarPorFechaRegistro(LocalDate fecha) {
         List<Envio> lista = new ArrayList<>();
+        if (fecha == null) return lista;
         for (Envio envio : registros) {
-            if (envio.getFechaRegistro().toLocalDate().isEqual(fecha)) {
+            if (envio.getFechaRegistro() != null && envio.getFechaRegistro().toLocalDate().isEqual(fecha)) {
                 lista.add(envio);
             }
         }
@@ -53,8 +55,9 @@ public class EnvioDAO {
     
     public List<Envio> listarPorFechaRetiro(LocalDate fecha) {
         List<Envio> lista = new ArrayList<>();
+        if (fecha == null) return lista;
         for (Envio envio : registros) {
-            if (envio.getFechaRetiro().toLocalDate().isEqual(fecha)) {
+            if (envio.getFechaRetiro() != null && envio.getFechaRetiro().toLocalDate().isEqual(fecha)) {
                 lista.add(envio);
             }
         }
@@ -76,8 +79,8 @@ public class EnvioDAO {
 
     // DELETE
     public boolean eliminar(int idEnvio) {
-        Envio Envio = buscarPorId(idEnvio);
-        if (Envio == null) return false;
-        return registros.remove(Envio);
+        Envio envio = buscarPorId(idEnvio);
+        if (envio == null) return false;
+        return registros.remove(envio);
     }
 }

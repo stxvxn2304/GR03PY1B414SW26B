@@ -2,11 +2,17 @@ package DAOs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Camion;
 
 public class CamionDAO {
-    private final List<Camion> registros = new ArrayList<>();
+    private static final List<Camion> registros = new ArrayList<>();
+
+    static {
+        // Datos iniciales de prueba
+        registros.add(new Camion("ABC-1234", "Carlos Pérez"));
+        registros.add(new Camion("XYZ-9876", "Juan Mendoza"));
+        registros.add(new Camion("PBA-5544", "Luis Torres"));
+    }
 
     // CREATE
     public boolean guardar(Camion camion) {
@@ -19,8 +25,9 @@ public class CamionDAO {
 
     // READ (uno)
     public Camion buscarPorPlaca(String placa) {
+        if (placa == null) return null;
         for (Camion camion : registros) {
-            if (camion.getPlaca().equals(placa)) {
+            if (camion.getPlaca().equalsIgnoreCase(placa.trim())) {
                 return camion;
             }
         }
@@ -37,7 +44,7 @@ public class CamionDAO {
         if (camion == null) return false;
 
         for (int i = 0; i < registros.size(); i++) {
-            if (registros.get(i).getPlaca().equals(camion.getPlaca())) {
+            if (registros.get(i).getPlaca().equalsIgnoreCase(camion.getPlaca().trim())) {
                 registros.set(i, camion);
                 return true;
             }

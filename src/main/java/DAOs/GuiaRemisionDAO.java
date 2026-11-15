@@ -2,11 +2,10 @@ package DAOs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.GuiaRemision;
 
 public class GuiaRemisionDAO {
-    private final List<GuiaRemision> registros = new ArrayList<>();
+    private static final List<GuiaRemision> registros = new ArrayList<>();
 
     // CREATE
     public boolean guardar(GuiaRemision guiaRemision) {
@@ -19,8 +18,9 @@ public class GuiaRemisionDAO {
 
     // READ (uno)
     public GuiaRemision buscarPorNumero(String numeroGuiaRemision) {
+        if (numeroGuiaRemision == null) return null;
         for (GuiaRemision guiaRemision : registros) {
-            if (guiaRemision.getNumeroGuiaRemision() == numeroGuiaRemision) {
+            if (guiaRemision.getNumeroGuiaRemision() != null && guiaRemision.getNumeroGuiaRemision().trim().equalsIgnoreCase(numeroGuiaRemision.trim())) {
                 return guiaRemision;
             }
         }
@@ -37,7 +37,7 @@ public class GuiaRemisionDAO {
         if (guiaRemision == null) return false;
 
         for (int i = 0; i < registros.size(); i++) {
-            if (registros.get(i).getNumeroGuiaRemision() == guiaRemision.getNumeroGuiaRemision()) {
+            if (registros.get(i).getNumeroGuiaRemision().equalsIgnoreCase(guiaRemision.getNumeroGuiaRemision().trim())) {
                 registros.set(i, guiaRemision);
                 return true;
             }

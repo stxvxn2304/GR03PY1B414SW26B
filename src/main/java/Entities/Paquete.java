@@ -1,5 +1,7 @@
 package Entities;
 
+import Enumerations.EstadoEnvio;
+
 public class Paquete {
     private int idPaquete;
     private String descripcion;
@@ -8,6 +10,7 @@ public class Paquete {
     private float largo;
     private float ancho;
     private Novedad novedad;
+    private EstadoEnvio estado;
     
     public Paquete(int idPaquete, String descripcion, float peso, float alto, float largo, float ancho) {
         this.idPaquete = idPaquete;
@@ -17,6 +20,7 @@ public class Paquete {
         this.largo = largo;
         this.ancho = ancho;
         this.novedad = null;
+        this.estado = EstadoEnvio.REGISTRADO;
     }
     
     public int getIdPaquete() {
@@ -60,5 +64,16 @@ public class Paquete {
     }
     public void setNovedad(Novedad novedad) {
         this.novedad = novedad;
+    }
+    public EstadoEnvio getEstado() {
+        return estado;
+    }
+    public void setEstado(EstadoEnvio estado) {
+        this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Paquete #" + idPaquete + " [" + descripcion + "] " + peso + "kg (" + largo + "x" + ancho + "x" + alto + " cm) - Estado: " + (estado != null ? estado : "Registrado");
     }
 }
