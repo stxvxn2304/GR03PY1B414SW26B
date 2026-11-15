@@ -5,15 +5,8 @@
 <dependencies><dependency><groupId>org.openjfx</groupId><artifactId>javafx-controls</artifactId><version>${javafx.version}</version></dependency></dependencies>
 <build>
 <finalName>SistemaEncomiendas</finalName>
-<sourceDirectory>src</sourceDirectory>
+<sourceDirectory>src/main/java</sourceDirectory>
 <resources>
-    <resource>
-        <directory>src</directory>
-        <excludes>
-            <exclude>**/*.java</exclude>
-            <exclude>main/**</exclude>
-        </excludes>
-    </resource>
     <resource>
         <directory>src/main/resources</directory>
     </resource>
