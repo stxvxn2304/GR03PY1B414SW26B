@@ -2,11 +2,10 @@ package DAOs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Cotizacion;
 
 public class CotizacionDAO {
-    private final List<Cotizacion> registros = new ArrayList<>();
+    private static final List<Cotizacion> registros = new ArrayList<>();
 
     // CREATE
     public boolean guardar(Cotizacion cotizacion) {

@@ -37,3 +37,4 @@
 .opcion-detalle { -fx-font-size: 12px; -fx-text-fill: #6B7280; }
 .opcion-flecha { -fx-font-size: 22px; -fx-text-fill: #9CA3AF; }
 .opcion-menu:hover .opcion-flecha { -fx-text-fill: #D97706; }
+.texto-card { -fx-text-fill: #FFFFFF; -fx-wrap-text: true; }

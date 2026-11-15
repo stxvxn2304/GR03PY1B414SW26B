@@ -12,7 +12,6 @@ public class Cotizacion {
     private String destino;
     private float valorEstimado;
     private Tarifa tarifa;
-
     
     public Cotizacion(int idCotizacion, LocalDate fecha, float peso, float alto, float largo, float ancho,
             String destino) {
@@ -79,5 +78,10 @@ public class Cotizacion {
     }
     public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
+    }
+
+    @Override
+    public String toString() {
+        return "Cotización #" + idCotizacion + " | Destino: " + destino + " | Peso: " + peso + " kg | Valor: $" + String.format("%.2f", valorEstimado);
     }
 }

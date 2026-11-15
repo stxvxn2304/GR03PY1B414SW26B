@@ -1,7 +1,6 @@
 package Entities;
 
 import java.time.LocalDateTime;
-
 import Enumerations.EstadoGuiaRemision;
 
 public class GuiaRemision {
@@ -10,12 +9,11 @@ public class GuiaRemision {
     private EstadoGuiaRemision estado;
     private Salida salida;
     
-    
     public GuiaRemision(String numeroGuiaRemision, LocalDateTime fechaEmision, Salida salida) {
         this.numeroGuiaRemision = numeroGuiaRemision;
         this.fechaEmision = fechaEmision;
-        this.estado = EstadoGuiaRemision.EMITIDA;
         this.salida = salida;
+        this.estado = EstadoGuiaRemision.EMITIDA;
     }
     public String getNumeroGuiaRemision() {
         return numeroGuiaRemision;
@@ -42,4 +40,8 @@ public class GuiaRemision {
         this.salida = salida;
     }
 
+    @Override
+    public String toString() {
+        return "Guía Remisión: " + numeroGuiaRemision + " | Emisión: " + (fechaEmision != null ? fechaEmision.toLocalDate() : "") + " | Estado: " + estado;
+    }
 }

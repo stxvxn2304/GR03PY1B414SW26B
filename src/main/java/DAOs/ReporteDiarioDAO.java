@@ -3,11 +3,10 @@ package DAOs;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.ReporteDiario;
 
 public class ReporteDiarioDAO {
-    private final List<ReporteDiario> registros = new ArrayList<>();
+    private static final List<ReporteDiario> registros = new ArrayList<>();
 
     // CREATE
     public boolean guardar(ReporteDiario reporteDiario) {
@@ -29,8 +28,9 @@ public class ReporteDiarioDAO {
     }
 
     public ReporteDiario buscarPorFecha(LocalDate fecha) {
+        if (fecha == null) return null;
         for (ReporteDiario reporteDiario : registros) {
-            if (reporteDiario.getFecha().isEqual(fecha)) {
+            if (reporteDiario.getFecha() != null && reporteDiario.getFecha().isEqual(fecha)) {
                 return reporteDiario;
             }
         }

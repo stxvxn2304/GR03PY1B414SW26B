@@ -1,7 +1,6 @@
 package Entities;
 
 import java.time.LocalDateTime;
-
 import Enumerations.TipoNovedad;
 
 public class Novedad {
@@ -14,7 +13,6 @@ public class Novedad {
         this.descripcion = descripcion;
         this.fechaRegistro = fechaRegistro;
     }
-    
     public TipoNovedad getTipo() {
         return tipo;
     }
@@ -32,5 +30,10 @@ public class Novedad {
     }
     public void setFechaRegistro(LocalDateTime fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + tipo + "] " + descripcion;
     }
 }

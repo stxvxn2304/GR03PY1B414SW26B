@@ -8,7 +8,6 @@ public class Camion {
         this.placa = placa;
         this.chofer = chofer;
     }
-    
     public String getPlaca() {
         return placa;
     }
@@ -22,4 +21,8 @@ public class Camion {
         this.chofer = chofer;
     }
 
+    @Override
+    public String toString() {
+        return "Camión [" + placa + "] - Conductor: " + chofer;
+    }
 }

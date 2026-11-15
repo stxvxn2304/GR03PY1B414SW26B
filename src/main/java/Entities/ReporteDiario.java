@@ -64,4 +64,14 @@ public class ReporteDiario {
     public void setTotalCobrado(float totalCobrado) {
         this.totalCobrado = totalCobrado;
     }
+
+    @Override
+    public String toString() {
+        return "=== Reporte Diario: " + fecha + " ===\n" +
+               "• Total envíos registrados: " + totalEnvios + "\n" +
+               "• Guías de remisión emitidas: " + totalGuias + "\n" +
+               "• Viajes/Salidas despachados: " + totalViajes + "\n" +
+               "• Envíos en inventario activo: " + totalInventario + "\n" +
+               "• Total recaudado/cobrado: $" + String.format("%.2f", totalCobrado);
+    }
 }

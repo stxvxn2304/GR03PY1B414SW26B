@@ -46,4 +46,8 @@ public class Tarifa {
         this.valor = valor;
     }
     
+    @Override
+    public String toString() {
+        return "Tarifa " + destino + " (" + pesoMin + "-" + pesoMax + " kg): $" + String.format("%.2f", valor);
+    }
 }

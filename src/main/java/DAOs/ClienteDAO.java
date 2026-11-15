@@ -2,11 +2,15 @@ package DAOs;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entities.Cliente;
 
 public class ClienteDAO {
-    private final List<Cliente> registros = new ArrayList<>();
+    private static final List<Cliente> registros = new ArrayList<>();
+
+    static {
+        registros.add(new Cliente(1, "1710000001", "Juan Pérez", "0991112222", "Av. Amazonas 100"));
+        registros.add(new Cliente(2, "0920000002", "María López", "0983334444", "Calle 9 de Octubre 200"));
+    }
 
     // CREATE
     public boolean guardar(Cliente cliente) {
@@ -28,8 +32,9 @@ public class ClienteDAO {
     }
 
     public Cliente buscarPorIdentificacion(String identificacion) {
+        if (identificacion == null) return null;
         for (Cliente cliente : registros) {
-            if (cliente.getIdentificacion() == identificacion) {
+            if (cliente.getIdentificacion() != null && cliente.getIdentificacion().trim().equalsIgnoreCase(identificacion.trim())) {
                 return cliente;
             }
         }

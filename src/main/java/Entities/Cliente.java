@@ -1,11 +1,12 @@
 package Entities;
+
 public class Cliente {
     private int idCliente;
     private String identificacion;
     private String nombre;
     private String telefono;
     private String direccion;
-
+    
     public Cliente(int idCliente, String identificacion, String nombre, String telefono, String direccion) {
         this.idCliente = idCliente;
         this.identificacion = identificacion;
@@ -13,7 +14,6 @@ public class Cliente {
         this.telefono = telefono;
         this.direccion = direccion;
     }
-
     public int getIdCliente() {
         return idCliente;
     }
@@ -44,5 +44,9 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
+
+    @Override
+    public String toString() {
+        return nombre + " (CI: " + identificacion + ", Telf: " + telefono + ")";
+    }
 }
