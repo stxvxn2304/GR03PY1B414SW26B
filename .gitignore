@@ -1,1 +1,28 @@
-/target/
+# Compilados (Maven y IDEs)
+target/
+bin/
+out/
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+
+# Eclipse (los genera Antigravity / VS Code)
+.settings/
+.classpath
+.project
+
+# VS Code
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Carpeta generada por Antigravity 
+output/
