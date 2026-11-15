@@ -10,11 +10,12 @@ public class Cotizacion {
     private float largo;
     private float ancho;
     private String destino;
+    private float pesoCobrado;
     private float valorEstimado;
     private Tarifa tarifa;
-    
+
     public Cotizacion(int idCotizacion, LocalDate fecha, float peso, float alto, float largo, float ancho,
-            String destino) {
+                      String destino) {
         this.idCotizacion = idCotizacion;
         this.fecha = fecha;
         this.peso = peso;
@@ -22,6 +23,7 @@ public class Cotizacion {
         this.largo = largo;
         this.ancho = ancho;
         this.destino = destino;
+        this.pesoCobrado = peso;
         this.valorEstimado = 0;
         this.tarifa = null;
     }
@@ -67,6 +69,12 @@ public class Cotizacion {
     public void setDestino(String destino) {
         this.destino = destino;
     }
+    public float getPesoCobrado() {
+        return pesoCobrado;
+    }
+    public void setPesoCobrado(float pesoCobrado) {
+        this.pesoCobrado = pesoCobrado;
+    }
     public float getValorEstimado() {
         return valorEstimado;
     }
@@ -82,6 +90,6 @@ public class Cotizacion {
 
     @Override
     public String toString() {
-        return "Cotización #" + idCotizacion + " | Destino: " + destino + " | Peso: " + peso + " kg | Valor: $" + String.format("%.2f", valorEstimado);
+        return "Cotización #" + idCotizacion + " | Destino: " + destino + " | Peso a cobrar: " + pesoCobrado + " kg | Valor: $" + String.format("%.2f", valorEstimado);
     }
 }

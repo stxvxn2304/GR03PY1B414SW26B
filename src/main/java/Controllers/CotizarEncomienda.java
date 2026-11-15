@@ -13,6 +13,10 @@ public class CotizarEncomienda {
     private final CotizacionDAO cotizacionDAO;
     private final TarifaDAOLista tarifaDAO;
     private static int secuenciaId = 100;
+    // Divisor del peso volumétrico
+    private static final float DIVISOR_VOLUMETRICO = 5000.0f;
+    // Recargo por cada kg que excede el último rango de la tarifa.
+    private static final float RECARGO_KG_EXTRA = 1.50f;
 
     public CotizarEncomienda() {
         this.cotizacionDAO = new CotizacionDAO();
@@ -41,35 +45,29 @@ public class CotizarEncomienda {
         }
 
         // calcular el pesoVolumentrico y sacar el mayor entre pesoVolumetrico y peso en kg
-        float pesoVolumetrico = (largo * ancho * alto) / 5000.0f;
+        float pesoVolumetrico = (largo * ancho * alto) / DIVISOR_VOLUMETRICO;
         float pesoACobrar = Math.max(peso, pesoVolumetrico);
 
-        // Comprobar si existe una tarifa para el peso y ciudad
+        // Tarifa del destino para el peso a cobrar
         Tarifa tarifa = tarifaDAO.buscarTarifa(destino, pesoACobrar);
-        float valor = 0;
+        float valor;
 
         if (tarifa != null) {
-            // Si entra en un rango predefinidio 0-50kg para una ciudad existente
             valor = tarifa.getValor();
         } else {
-            // verificar si la ciudad existe pero se paso de peso
+            // El peso se pasa del último rango: tarifa máxima del destino + recargo por kg extra
             tarifa = tarifaDAO.obtenerTarifaMaxima(destino);
-
-            if (tarifa != null) {
-                // La ciudad existe pero el peso se pasa, cobramos la tarifa mayor para la ciudad más un recargo por lo s kg extras
-                float kgAdicional = pesoACobrar - tarifa.getPesoMax();
-                valor = tarifa.getValor() + (kgAdicional * 1.50f);
-            } else {
-                // Si la ciudad no existe se realiza un calculo generico
-                float volumenM3 = (largo * ancho * alto) / 1000000.0f;
-                valor = Math.max(peso * 2.0f, volumenM3 * 150.0f);
-                if (valor < 4.00f) valor = 4.00f;
+            if (tarifa == null) {
+                throw new IllegalArgumentException("No hay tarifas registradas para el destino: " + destino);
             }
+            float kgAdicional = pesoACobrar - tarifa.getPesoMax();
+            valor = tarifa.getValor() + (kgAdicional * RECARGO_KG_EXTRA);
         }
 
         int id = ++secuenciaId;
         Cotizacion cot = new Cotizacion(id, LocalDate.now(), peso, alto, largo, ancho, destino.trim());
         cot.setTarifa(tarifa);
+        cot.setPesoCobrado(pesoACobrar);
         cot.setValorEstimado(Math.round(valor * 100.0f) / 100.0f);
 
         cotizacionDAO.guardar(cot);

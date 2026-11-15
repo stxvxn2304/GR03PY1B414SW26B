@@ -1,6 +1,5 @@
 package encomiendas.ui;
 
-import Controllers.CotizarEncomienda;
 import Controllers.EnviarEncomienda;
 import Entities.Cliente;
 import Entities.Cotizacion;
@@ -22,7 +21,6 @@ public class InterfazEnvio extends PantallaBase {
     private final ObservableList<TipoContenido> tipos=FXCollections.observableArrayList();
     private final ListView<TipoContenido> lstTipos=new ListView<>(tipos);
     private final Label resultado=new Label("Complete los datos para registrar el envío.");
-    private Runnable accion=()->registrar();
     public InterfazEnvio(Runnable volver) {
         super("Registrar envío","Formulario unificado: remitente, destinatario y paquete.",volver);
         cmbTipo.getItems().addAll(TipoContenido.values());
@@ -44,7 +42,7 @@ public class InterfazEnvio extends PantallaBase {
         Ui.colocar(g,Ui.campo("Teléfono del destinatario",desTel),0,6,1); Ui.colocar(g,Ui.campo("Dirección del destinatario",desDir),1,6,1);
         Ui.colocar(g,cajaTipos,0,7,2);
         resultado.getStyleClass().add("resultado");
-        setCenter(Ui.pagina(Ui.tarjeta("Datos del envío",g,Ui.primario("Enviar datos y registrar encomienda",()->accion.run())),Ui.tarjeta("Resultado / guía",resultado)));
+        setCenter(Ui.pagina(Ui.tarjeta("Datos del envío",g,Ui.primario("Enviar datos y registrar encomienda",this::registrar)),Ui.tarjeta("Resultado / guía",resultado)));
     }
     private int leerIdCotizacion() {
         try { return Integer.parseInt(idCot.getText().trim()); }
@@ -57,7 +55,7 @@ public class InterfazEnvio extends PantallaBase {
             Cotizacion c = controlador.consultarCotizacion(leerIdCotizacion());
             resumenCot.setText("Cotización #" + c.getIdCotizacion()
                     + " | Destino: " + c.getDestino()
-                    + " | " + c.getPeso() + " kg | " + c.getLargo() + " x " + c.getAncho() + " x " + c.getAlto() + " cm"
+                    + " | Peso a cobrar: " + String.format("%.2f", c.getPesoCobrado()) + " kg | " + c.getLargo() + " x " + c.getAncho() + " x " + c.getAlto() + " cm"
                     + " | Valor: $" + String.format("%.2f", c.getValorEstimado()));
         } catch (IllegalArgumentException ex) {
             resumenCot.setText("Sin cotización válida.");
@@ -86,20 +84,14 @@ public class InterfazEnvio extends PantallaBase {
         }
         cmbTipo.getSelectionModel().clearSelection();
     }
-    // Este botón se conecta con EnviarEncomienda: registrarRemitente, registrarDestinatario,
-    // registrarPaquete, asignarSalida y finalizarEnvio. El controlador coordina el orden.
-    public void setAccionEnviar(Runnable r){accion=r;}
     public TextField getTxtIdCotizacion(){return idCot;}
-    public TextField getTxtRemitenteId(){return remId;} 
+    public TextField getTxtRemitenteId(){return remId;}
     public TextField getTxtRemitenteNombre(){return remNom;}
-    public TextField getTxtRemitenteTelefono(){return remTel;} 
+    public TextField getTxtRemitenteTelefono(){return remTel;}
     public TextField getTxtRemitenteDireccion(){return remDir;}
-    public TextField getTxtDestinatarioId(){return desId;} 
+    public TextField getTxtDestinatarioId(){return desId;}
     public TextField getTxtDestinatarioNombre(){return desNom;}
-    public TextField getTxtDestinatarioTelefono(){return desTel;} 
+    public TextField getTxtDestinatarioTelefono(){return desTel;}
     public TextField getTxtDestinatarioDireccion(){return desDir;}
     public ObservableList<TipoContenido> getTiposContenido(){return tipos;}
-    // Sustituir String por GuiaEnvio cuando se integre la entidad.
-    public void mostrarGuia(String numero){resultado.setText("Envío registrado. Número de guía: "+numero);}
-    private void aviso(){new Alert(Alert.AlertType.INFORMATION,"Conecte este botón con los métodos de EnviarEncomienda.").showAndWait();}
 }
