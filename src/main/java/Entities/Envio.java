@@ -4,31 +4,17 @@ import java.time.LocalDateTime;
 import Enumerations.EstadoEnvio;
 
 public class Envio {
-    private int idEnvio;
-    private Cotizacion cotizacion;
-    private Paquete paquete;
-    private String destino;
-    private Cliente remitente;
-    private Cliente destinatario;
-    private Salida salida;
-    private String numeroGuia;
-    private LocalDateTime fechaRegistro;
-    private LocalDateTime fechaRetiro;
+    private int idEnvio; private Cotizacion cotizacion; private Paquete paquete;
+    private String destino; private Cliente remitente; private Cliente destinatario; private Salida salida;
+    private String numeroGuia; private LocalDateTime fechaRegistro; private LocalDateTime fechaRetiro;
     private EstadoEnvio estado;
     
     public Envio(int idEnvio, Cotizacion cotizacion, Paquete paquete, String destino, Cliente remitente,
             Cliente destinatario, Salida salida, String numeroGuia, LocalDateTime fechaRegistro) {
-        this.idEnvio = idEnvio;
-        this.cotizacion = cotizacion;
-        this.paquete = paquete;
-        this.destino = destino;
-        this.remitente = remitente;
-        this.destinatario = destinatario;
-        this.salida = salida;
-        this.numeroGuia = numeroGuia;
-        this.fechaRegistro = fechaRegistro;
-        this.fechaRetiro = null;
-        this.estado = EstadoEnvio.REGISTRADO;
+        this.idEnvio = idEnvio; this.cotizacion = cotizacion; this.paquete = paquete;
+        this.destino = destino; this.remitente = remitente; this.destinatario = destinatario;
+        this.salida = salida; this.numeroGuia = numeroGuia; this.fechaRegistro = fechaRegistro;
+        this.fechaRetiro = null; this.estado = EstadoEnvio.REGISTRADO;
         if (paquete != null) { paquete.setEstado(EstadoEnvio.REGISTRADO);}}
     
     public int getIdEnvio() { return idEnvio;}
@@ -52,9 +38,7 @@ public class Envio {
     public LocalDateTime getFechaRetiro() {return fechaRetiro; }
     public void setFechaRetiro(LocalDateTime fechaRetiro) {this.fechaRetiro = fechaRetiro; }
     public EstadoEnvio getEstado() {
-        if (estado == null && paquete != null) {
-            return paquete.getEstado();
-        }
+        if (estado == null && paquete != null) { return paquete.getEstado(); }
         return estado != null ? estado : EstadoEnvio.REGISTRADO;
     }
     public void setEstado(EstadoEnvio estado) {
