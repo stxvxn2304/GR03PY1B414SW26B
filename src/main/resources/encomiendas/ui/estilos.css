@@ -38,3 +38,5 @@
 .opcion-flecha { -fx-font-size: 22px; -fx-text-fill: #9CA3AF; }
 .opcion-menu:hover .opcion-flecha { -fx-text-fill: #D97706; }
 .texto-card { -fx-text-fill: #FFFFFF; -fx-wrap-text: true; }
+.card > .label {-fx-text-fill: #FFFFFF; }
+.card > .label.resultado {-fx-text-fill: #0F766E; }
