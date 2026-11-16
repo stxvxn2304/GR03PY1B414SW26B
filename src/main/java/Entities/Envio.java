@@ -29,70 +29,28 @@ public class Envio {
         this.fechaRegistro = fechaRegistro;
         this.fechaRetiro = null;
         this.estado = EstadoEnvio.REGISTRADO;
-        if (paquete != null) {
-            paquete.setEstado(EstadoEnvio.REGISTRADO);
-        }
-    }
-    public int getIdEnvio() {
-        return idEnvio;
-    }
-    public void setIdEnvio(int idEnvio) {
-        this.idEnvio = idEnvio;
-    }
-    public Cotizacion getCotizacion() {
-        return cotizacion;
-    }
-    public void setCotizacion(Cotizacion cotizacion) {
-        this.cotizacion = cotizacion;
-    }
-    public Paquete getPaquete() {
-        return paquete;
-    }
-    public void setPaquete(Paquete paquete) {
-        this.paquete = paquete;
-    }
-    public String getDestino() {
-        return destino;
-    }
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-    public Cliente getRemitente() {
-        return remitente;
-    }
-    public void setRemitente(Cliente remitente) {
-        this.remitente = remitente;
-    }
-    public Cliente getDestinatario() {
-        return destinatario;
-    }
-    public void setDestinatario(Cliente destinatario) {
-        this.destinatario = destinatario;
-    }
-    public Salida getSalida() {
-        return salida;
-    }
-    public void setSalida(Salida salida) {
-        this.salida = salida;
-    }
-    public String getNumeroGuia() {
-        return numeroGuia;
-    }
-    public void setNumeroGuia(String numeroGuia) {
-        this.numeroGuia = numeroGuia;
-    }
-    public LocalDateTime getFechaRegistro() {
-        return fechaRegistro;
-    }
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-    public LocalDateTime getFechaRetiro() {
-        return fechaRetiro;
-    }
-    public void setFechaRetiro(LocalDateTime fechaRetiro) {
-        this.fechaRetiro = fechaRetiro;
-    }
+        if (paquete != null) { paquete.setEstado(EstadoEnvio.REGISTRADO);}}
+    
+    public int getIdEnvio() { return idEnvio;}
+    public void setIdEnvio(int idEnvio) {  this.idEnvio = idEnvio; }
+    public Cotizacion getCotizacion() { return cotizacion;}
+    public void setCotizacion(Cotizacion cotizacion) {this.cotizacion = cotizacion;}
+    public Paquete getPaquete() { return paquete; }
+    public void setPaquete(Paquete paquete) { this.paquete = paquete;}
+    public String getDestino() { return destino;}
+    public void setDestino(String destino) { this.destino = destino;}
+    public Cliente getRemitente() { return remitente;}
+    public void setRemitente(Cliente remitente) { this.remitente = remitente;}
+    public Cliente getDestinatario() { return destinatario;}
+    public void setDestinatario(Cliente destinatario) {this.destinatario = destinatario;}
+    public Salida getSalida() { return salida;}
+    public void setSalida(Salida salida) { this.salida = salida;}
+    public String getNumeroGuia() {return numeroGuia;}
+    public void setNumeroGuia(String numeroGuia) {this.numeroGuia = numeroGuia;}
+    public LocalDateTime getFechaRegistro() { return fechaRegistro;}
+    public void setFechaRegistro(LocalDateTime fechaRegistro) { this.fechaRegistro = fechaRegistro;}
+    public LocalDateTime getFechaRetiro() {return fechaRetiro; }
+    public void setFechaRetiro(LocalDateTime fechaRetiro) {this.fechaRetiro = fechaRetiro; }
     public EstadoEnvio getEstado() {
         if (estado == null && paquete != null) {
             return paquete.getEstado();
