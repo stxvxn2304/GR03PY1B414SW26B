@@ -20,43 +20,18 @@ public class Salida {
         this.paquetes = new ArrayList<>();
         this.camion = null;
     }
-    public int getIdSalida() {
-        return idSalida;
-    }
-    public void setIdSalida(int idSalida) {
-        this.idSalida = idSalida;
-    }
-    public String getDestino() {
-        return destino;
-    }
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
-    }
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
-    }
-    public GuiaRemision getGuiaRemision() {
-        return guiaRemision;
-    }
-    public void setGuiaRemision(GuiaRemision guiaRemision) {
-        this.guiaRemision = guiaRemision;
-    }
-    public List<Envio> getPaquetes() {
-        if (paquetes == null) paquetes = new ArrayList<>();
-        return paquetes;
-    }
-    public void setPaquetes(List<Envio> paquetes) {
-        this.paquetes = paquetes;
-    }
-    public Camion getCamion() {
-        return camion;
-    }
-    public void setCamion(Camion camion) {
-        this.camion = camion;
-    }
+    public int getIdSalida() {return idSalida;}
+    public void setIdSalida(int idSalida) { this.idSalida = idSalida; }
+    public String getDestino() { return destino;}
+    public void setDestino(String destino) { this.destino = destino;}
+    public LocalDateTime getFechaHora() {  return fechaHora;}
+    public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora;}
+    public GuiaRemision getGuiaRemision() {return guiaRemision;}
+    public void setGuiaRemision(GuiaRemision guiaRemision) { this.guiaRemision = guiaRemision;} 
+    public List<Envio> getPaquetes() {if (paquetes == null) paquetes = new ArrayList<>(); return paquetes;}
+    public void setPaquetes(List<Envio> paquetes) { this.paquetes = paquetes;}
+    public Camion getCamion() { return camion;}
+    public void setCamion(Camion camion) { this.camion = camion;}
 
     @Override
     public String toString() {
