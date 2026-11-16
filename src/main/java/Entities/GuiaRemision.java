@@ -15,30 +15,14 @@ public class GuiaRemision {
         this.salida = salida;
         this.estado = EstadoGuiaRemision.EMITIDA;
     }
-    public String getNumeroGuiaRemision() {
-        return numeroGuiaRemision;
-    }
-    public void setNumeroGuiaRemision(String numeroGuiaRemision) {
-        this.numeroGuiaRemision = numeroGuiaRemision;
-    }
-    public LocalDateTime getFechaEmision() {
-        return fechaEmision;
-    }
-    public void setFechaEmision(LocalDateTime fechaEmision) {
-        this.fechaEmision = fechaEmision;
-    }
-    public EstadoGuiaRemision getEstado() {
-        return estado;
-    }
-    public void setEstado(EstadoGuiaRemision estado) {
-        this.estado = estado;
-    }
-    public Salida getSalida() {
-        return salida;
-    }
-    public void setSalida(Salida salida) {
-        this.salida = salida;
-    }
+    public String getNumeroGuiaRemision() { return numeroGuiaRemision;}
+    public void setNumeroGuiaRemision(String numeroGuiaRemision) { this.numeroGuiaRemision = numeroGuiaRemision;}
+    public LocalDateTime getFechaEmision() { return fechaEmision;}
+    public void setFechaEmision(LocalDateTime fechaEmision) { this.fechaEmision = fechaEmision; }
+    public EstadoGuiaRemision getEstado() {return estado;}
+    public void setEstado(EstadoGuiaRemision estado) {this.estado = estado;}
+    public Salida getSalida() { return salida;}
+    public void setSalida(Salida salida) { this.salida = salida;}
 
     @Override
     public String toString() {
