@@ -10,18 +10,7 @@ import Entities.Salida;
 public class SalidaDAO {
     private static final List<Salida> registros = new ArrayList<>();
 
-    static {
-        CamionDAO camionDAO = new CamionDAO();
-        Salida s1 = new Salida(1, "Guayaquil", LocalDateTime.now().plusHours(2));
-        s1.setCamion(camionDAO.buscarPorPlaca("ABC-1234"));
-        registros.add(s1);
-        Salida s2 = new Salida( 2, "Cuenca", LocalDateTime.now().plusHours(4));
-        s2.setCamion(camionDAO.buscarPorPlaca("XYZ-9876"));
-        registros.add(s2);
-        Salida s3 = new Salida( 3, "Quito", LocalDateTime.now().plusHours(1) );
-        s3.setCamion(camionDAO.buscarPorPlaca("PBA-5544"));
-        registros.add(s3);
-    }
+   
 
     // CREATE
     public boolean guardar(Salida salida) {
