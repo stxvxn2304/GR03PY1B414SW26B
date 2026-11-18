@@ -1,5 +1,7 @@
 package encomiendas.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import Controllers.EnviarEncomienda;
 import Entities.Cliente;
 import Entities.Cotizacion;
@@ -71,8 +73,12 @@ public class InterfazEnvio extends PantallaBase {
             Cliente des = controlador.registrarDestinatario(desId.getText(), desNom.getText(), desTel.getText(), desDir.getText());
             Envio e = controlador.finalizarEnvio(cot, rem, des, p);
             resultado.setText("Envío registrado. Número de guía: " + e.getNumeroGuia()
-                    + "\nDestino: " + e.getDestino()
-                    + "\nSalida asignada: #" + e.getSalida().getIdSalida());
+                    + "\nRemitente: Cliente #" + e.getRemitente().getIdCliente() + " | " + e.getRemitente().getNombre()
+                    + "\nDestinatario: Cliente #" + e.getDestinatario().getIdCliente() + " | " + e.getDestinatario().getNombre()
+                    + "\nPaquete #" + e.getPaquete().getIdPaquete() + " | "  + e.getCotizacion().getPesoCobrado() + " kg | " + e.getPaquete().getEstado().toString() 
+                    + "\nSalida asignada: #" + e.getSalida().getIdSalida() + " | " + e.getSalida().getDestino() + " | " + e.getSalida().getFechaHora().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                    );
+                    
         } catch (IllegalArgumentException ex) {
             new Alert(Alert.AlertType.WARNING, ex.getMessage()).showAndWait();
         }

@@ -27,7 +27,7 @@ public class Aplicacion extends Application {
         Runnable volver = () -> mostrar("menu");
 
         // ==========================================
-        // PERSONA A: COTIZAR, ENVIAR Y CIERRE DIARIO
+        // COTIZAR, ENVIAR Y CIERRE DIARIO
         // ==========================================
 
         pantallas.put(
@@ -46,7 +46,7 @@ public class Aplicacion extends Application {
         );
 
         // ==========================================
-        // PERSONA C: ENTREGAR, RASTREAR Y GPS
+        // ENTREGAR, RASTREAR Y GPS
         // ==========================================
 
         GestorEntrega gestorEntrega = new GestorEntrega();
@@ -143,7 +143,7 @@ public class Aplicacion extends Application {
         );
 
         // ==========================================
-        // PERSONA B: EMBARCAR Y RECIBIR
+        //  EMBARCAR Y RECIBIR
         // ==========================================
 
         pantallas.put(
