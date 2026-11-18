@@ -8,7 +8,7 @@ out/
 .idea/
 *.iml
 
-# Eclipse (los genera Antigravity / VS Code)
+# Eclipse
 .settings/
 .classpath
 .project
@@ -24,5 +24,4 @@ Thumbs.db
 *.log
 *.tmp
 
-# Carpeta generada por Antigravity 
 output/
